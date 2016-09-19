@@ -1,7 +1,7 @@
 //Use this file to implement Part One of your project
 
 // Excercise 1: Objects
-/*
+
 var animal = {};
 
 animal.username = 'Kitty';
@@ -81,8 +81,6 @@ for (var i = 0; i < animalNames.length; i++) {
     farm.push(animalMaker(animalNames[i]));
 };
 
-*/
-
 // Functions Excercise
 
 var AnimalTestUser = function (username){
@@ -160,3 +158,23 @@ var giveMatches = function (farm) {
 }
 
 giveMatches(myFarm);
+
+// Nested Data Exercise
+
+var friends = [];
+
+friends.push(animals[0].username, animals[1].username);
+
+var relationships = {};
+
+relationships.friends = friends;
+
+var matches = [];
+
+relationships.matches = matches;
+
+relationships.matches.push(relationships.friends[0]);
+
+for (var i = 0; i < animals.length; i++){
+    animals[i]['relationships'] = relationships;
+}
