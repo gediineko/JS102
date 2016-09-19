@@ -111,7 +111,7 @@ var AnimalCreator = function (username, species, tagline, noises) {
 }
 
 var addFriend = function (animal, friend) {
-    animal.friends.push(friend.username);
+    animal.friends.push(friend);
 }
 
 var myFarm = [];
@@ -119,13 +119,20 @@ var myFarm = [];
 myFarm.push(AnimalCreator('Kitty', 'cat', 'Meow! That\'s right!', ['meow', 'purr', 'growl']));
 myFarm.push(AnimalCreator('Dawg', 'dog', 'Ruff life!', ['bark', 'yip', 'growl']));
 myFarm.push(AnimalCreator('Duffy', 'duck', 'Quack away!', ['quack']));
+myFarm.push(AnimalCreator('Katy', 'cat', 'I meow you!', ['meow', 'purr', 'growl']));
 
 addFriend(myFarm[0], myFarm[1]);
 addFriend(myFarm[0], myFarm[2]);
+addFriend(myFarm[0], myFarm[3]);
 addFriend(myFarm[1], myFarm[2]);
 addFriend(myFarm[1], myFarm[0]);
+addFriend(myFarm[1], myFarm[3]);
 addFriend(myFarm[2], myFarm[0]);
 addFriend(myFarm[2], myFarm[1]);
+addFriend(myFarm[2], myFarm[3]);
+addFriend(myFarm[3], myFarm[0]);
+addFriend(myFarm[3], myFarm[1]);
+addFriend(myFarm[3], myFarm[2]);
 
 var addMatchesArray = function (farm) {
     for (var i = 0; i < farm.length; i++){
@@ -133,12 +140,18 @@ var addMatchesArray = function (farm) {
     }
 }
 
-//addMatchesArray(myFarm);
+addMatchesArray(myFarm);
 
 var giveMatches = function (farm) {
     for (var i = 0; i < farm.length; i++){
-        farm[i].matches.push(farm[i].friends[0]);
+        var match = [];
+        for (var friends = 0; friends < farm[i].friends.length; friends++){
+            if (farm[i].species === farm[i].friends[friends].species) {
+                match.push(farm[i].friends[friends].username);
+            }
+        }
+        farm[i].matches.push(match);
     }
 }
 
-//giveMatches(myFarm);
+giveMatches(myFarm);
