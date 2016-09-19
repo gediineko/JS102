@@ -83,28 +83,62 @@ for (var i = 0; i < animalNames.length; i++) {
 
 */
 
-var AnimalTestUser = function (username) {
-    return {
-        username: username
-        if (arguments > 1) {
-            , otherArgs: [arguments]
+// Functions Excercise
+
+var AnimalTestUser = function (username){
+    var argsLen = arguments.length;
+    var otherArgs = [];
+    if (argsLen > 1) {
+        for (var i = 1; i < argsLen; i++) {
+            otherArgs.push(arguments[i]);
         }
-    }    
+    }
+
+    return {
+        'username': username,
+        'otherArgs': otherArgs
+    };
 }
 
 var AnimalCreator = function (username, species, tagline, noises) {
     return {
-        username: username,
-        species: species,
-        tagline: tagline,
-        noises: [noises],
-        friends: []
+        'username': username,
+        'species': species,
+        'tagline': tagline,
+        'noises': noises,
+        'friends': []
     }
 }
 
 var addFriend = function (animal, friend) {
-    animal[friend].push(friend.username);
+    animal.friends.push(friend.username);
 }
 
 var myFarm = [];
 
+myFarm.push(AnimalCreator('Kitty', 'cat', 'Meow! That\'s right!', ['meow', 'purr', 'growl']));
+myFarm.push(AnimalCreator('Dawg', 'dog', 'Ruff life!', ['bark', 'yip', 'growl']));
+myFarm.push(AnimalCreator('Duffy', 'duck', 'Quack away!', ['quack']));
+
+addFriend(myFarm[0], myFarm[1]);
+addFriend(myFarm[0], myFarm[2]);
+addFriend(myFarm[1], myFarm[2]);
+addFriend(myFarm[1], myFarm[0]);
+addFriend(myFarm[2], myFarm[0]);
+addFriend(myFarm[2], myFarm[1]);
+
+var addMatchesArray = function (farm) {
+    for (var i = 0; i < farm.length; i++){
+        farm[i]['matches'] = [];
+    }
+}
+
+//addMatchesArray(myFarm);
+
+var giveMatches = function (farm) {
+    for (var i = 0; i < farm.length; i++){
+        farm[i].matches.push(farm[i].friends[0]);
+    }
+}
+
+//giveMatches(myFarm);
