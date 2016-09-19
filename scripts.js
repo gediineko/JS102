@@ -116,23 +116,28 @@ var addFriend = function (animal, friend) {
 
 var myFarm = [];
 
-myFarm.push(AnimalCreator('Kitty', 'cat', 'Meow! That\'s right!', ['meow', 'purr', 'growl']));
-myFarm.push(AnimalCreator('Dawg', 'dog', 'Ruff life!', ['bark', 'yip', 'growl']));
-myFarm.push(AnimalCreator('Duffy', 'duck', 'Quack away!', ['quack']));
-myFarm.push(AnimalCreator('Katy', 'cat', 'I meow you!', ['meow', 'purr', 'growl']));
+var kit = AnimalCreator('Kit', 'cat', 'Meow! That\'s right!', ['meow', 'purr', 'growl']);
+var dawg = AnimalCreator('Dawg', 'dog', 'Ruff life!', ['bark', 'yip', 'growl']);
+var duffy = AnimalCreator('Duffy', 'duck', 'Quack away!', ['quack']);
+var katy = AnimalCreator('Katy', 'cat', 'I meow you!', ['meow', 'purr', 'growl']);
 
-addFriend(myFarm[0], myFarm[1]);
-addFriend(myFarm[0], myFarm[2]);
-addFriend(myFarm[0], myFarm[3]);
-addFriend(myFarm[1], myFarm[2]);
-addFriend(myFarm[1], myFarm[0]);
-addFriend(myFarm[1], myFarm[3]);
-addFriend(myFarm[2], myFarm[0]);
-addFriend(myFarm[2], myFarm[1]);
-addFriend(myFarm[2], myFarm[3]);
-addFriend(myFarm[3], myFarm[0]);
-addFriend(myFarm[3], myFarm[1]);
-addFriend(myFarm[3], myFarm[2]);
+myFarm.push(kit, dawg, duffy, katy);
+
+addFriend(kit, dawg);
+addFriend(kit, duffy);
+addFriend(kit, katy);
+
+addFriend(dawg, duffy);
+addFriend(dawg, kit);
+addFriend(dawg, katy);
+
+addFriend(duffy, kit);
+addFriend(duffy, dawg);
+addFriend(duffy, katy);
+
+addFriend(katy, kit);
+addFriend(katy, dawg);
+addFriend(katy, duffy);
 
 var addMatchesArray = function (farm) {
     for (var i = 0; i < farm.length; i++){
